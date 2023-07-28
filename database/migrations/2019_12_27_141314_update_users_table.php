@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class UpdateUsersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('position')->nullable()->change();
+            $table->string('phone_number')->nullable()->change();
+        });
+
+        Schema::table('user_clones', function (Blueprint $table) {
+            $table->string('position')->nullable()->change();
+            $table->string('phone_number')->nullable()->change();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('position')->nullable(false)->change();
+            $table->string('phone_number')->nullable(false)->change();
+        });
+
+        Schema::table('user_clones', function (Blueprint $table) {
+            $table->string('position')->nullable(false)->change();
+            $table->string('phone_number')->nullable(false)->change();
+        });
+    }
+}
